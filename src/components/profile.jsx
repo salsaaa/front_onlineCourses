@@ -39,15 +39,12 @@ const Profile = props => {
 
 
     useEffect(() => {
-        console.log("pathprofile",path)
         if (path!=="/profile/:id") {
             props.onSpinner(true)
 
         }
-        console.log("props.match.path", props.match.params.id)
         const id = props.match.params.id || localStorage.getItem("Id")
         userService.getUserById(id).then(({ data }) => {
-            console.log("profileData", data)
             setImg(`data:image/jpeg;base64,${data.img}`)
             setProfile(data);
             setCurrentUser(data);
@@ -72,10 +69,8 @@ const Profile = props => {
         const file=event.target.files[0]
         user["selectedFile"] =file ;
         getBase64(file, (result) => {
-            console.log(result)
             setImg(result)
        });
-        console.log(user)
         setCurrentUser(user)
     }
     const getBase64=(file, cb)=> {
@@ -94,13 +89,9 @@ const Profile = props => {
             props.onSpinner(true)
             const img = new FormData()
             img.append('file', currentUser.selectedFile)
-            console.log(img)
             uploadImg(img).then(({ data }) => { // then print response status
-                console.log(data)
                 currentUser["img"] = data.filename;
                 userService.updateUser(profile._id, currentUser).then(({data}) => {
-                    console.log(data)
-                    console.log("currentUser.img",currentUser.img)
                     setIsEdit(false);
                     props.history.replace("/profile");
                     props.onSpinner(false)
@@ -124,7 +115,6 @@ const Profile = props => {
     }
     return (
         <React.Fragment>
-            {console.log(img)}
             {!props.spinner && <div className="InstCard ">
                 <Container className="profileContainer">
                     <Card className="card--borderless">
@@ -192,6 +182,7 @@ const Profile = props => {
                                         <div className="courseCardsContainer courseCardsContainer--ml">
                                             <div className="courseCardsContainer__sub">
                                                 {enrolledCourses?.map(course => (
+                                                       course.courseId&&
                                                     <div className="CourseCard CourseCard--width" key={course._id}>
                                                         <CourseCard
                                                             {...props}
@@ -200,7 +191,8 @@ const Profile = props => {
                                                             course={course}
                                                             onPoints={handlePoints}
                                                         />
-                                                    </div>
+                                                        </div>
+                                                    
                                                 ))}
                                             </div>
                                         </div>

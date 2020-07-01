@@ -56,7 +56,7 @@ const Home = props => {
 
     return (
         <React.Fragment>
-        {!props.spinner&&<div>
+            <div>
             <BackGround />
 
             <About />
@@ -93,7 +93,6 @@ const Home = props => {
 
                             </div>
                             <div className="CourseCard__pagination">
-                                {console.log("activeBefore", activePage)}
                                 <PaginationList
                                     key={activePage}
                                     type="free courses"
@@ -115,7 +114,7 @@ const Home = props => {
                     <BsFillPlusCircleFill />
                 </Link>
             }
-            </div>}
+            </div>
         </React.Fragment>
     );
 };

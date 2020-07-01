@@ -20,7 +20,6 @@ const Navbar = props => {
     setSearchComp(false)
   }
   const handleSearchChange = ({ target }) => {
-    console.log(target.value)
     setSearchWord(target.value)
   }
 
@@ -78,7 +77,6 @@ const Navbar = props => {
       const account = { ...state.account }
       props.onSpinner(true)
       addAdmin(account).then(({ data }) => {
-        console.log(data)
         setAddAdminShow(false)
         props.onSpinner(false)
 
@@ -110,7 +108,6 @@ const Navbar = props => {
     errors: {}
   })
   return (
-
     <React.Fragment>
       <ToastContainer />
       <nav className="nav fixed-top navbar navbar-expand-lg  py-3 border-bottom">

@@ -2,10 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const SearchedCard = (props) => {
-  console.log(props.data._id)
   return (
     <React.Fragment>
-      {console.log("searchData",props.data)}
       <Link to={`/courses/${props.data._id}/details`}>
 
       <div className="search-card">

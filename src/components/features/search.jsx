@@ -4,7 +4,6 @@ import { Button, Container } from 'react-bootstrap'
 import SearchedCard from '../cards/searched-card'
 import { searchByCourses } from '../../services/featuresService'
 const Search = (props) => {
-    console.log(props.searchWord)
 
     const [state, setState] = useState({
         courses: [],

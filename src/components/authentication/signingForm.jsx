@@ -57,11 +57,12 @@ const SigningForm = (props) => {
       const account = { ...state.account }
 
       if (path === "/login") {
+        props.onSpinner(true);
         delete errors.fullName;
         Login(account)
           .then(({ data }) => {
+        props.onSpinner(false);
             props.history.replace("/home");
-            console.log(data)
             localStorage.setItem("Id", data.user._id);
             localStorage.setItem("Name", data.user.fullName);
             localStorage.setItem("JWT", data.token);
@@ -80,9 +81,10 @@ const SigningForm = (props) => {
 
       }
       else if (path === "/register") {
+        props.onSpinner(true);
         Register(account).then(({ data }) => {
+        props.onSpinner(false);
           props.history.replace("/home");
-          console.log(data)
           localStorage.setItem("Id", data.user._id);
           localStorage.setItem("Name", data.user.fullName);
           localStorage.setItem("JWT", data.token);
@@ -126,7 +128,7 @@ const SigningForm = (props) => {
   };
 
   return (
-
+!props.spinner&&
     <React.Fragment>
       <ToastContainer />
       <Container className="containerSignForm">
@@ -218,28 +220,6 @@ const SigningForm = (props) => {
                   />
                   <span className="focus-input100"></span>
                 </div>
-
-                {window.location.pathname == '/login' && <div className="m-b-18">
-                  <input
-                    className="radioInput"
-                    type="radio"
-                    name="userType"
-                    value="user"
-                    onClick={handleChange}
-                  />{" "}
-                  <span style={{ color: "#808080", marginRight: "10px" }}>
-                    User
-                  </span>
-                  <input
-                    className="radioInput"
-                    type="radio"
-                    name="userType"
-                    value="admin"
-                    onClick={handleChange}
-                  />{" "}
-                  <span style={{ color: "#808080" }}>Admin</span>
-                  {state.errors && state.errors.userType && <label className="chooseType">choose your type</label>}
-                </div>}
                 <div className="flex-sb-m w-full p-b-30">
                   <div className="contact100-form-checkbox">
                     <input

@@ -13,7 +13,6 @@ const Manage = (props) => {
         window.scrollTo(0,0)
         props.onSpinner(true)
         getAllCourses().then(({ data }) => {
-            console.log(data)
             setData(data.reverse())
             props.onSpinner(false)
 
@@ -23,7 +22,6 @@ const Manage = (props) => {
         setManageBy("courses")
         props.onSpinner(true)
         getAllCourses().then(({ data }) => {
-            console.log(data)
             setData(data.reverse())
             props.onSpinner(false)
         }).catch((err) => console.log(err))
@@ -72,6 +70,7 @@ const Manage = (props) => {
     }
     showedData = data.filter(i => (i[i.title ? 'title' : 'fullName'].toLowerCase().includes(searchWord.toLowerCase())))
     return (
+      
         <React.Fragment>
             <Container>
                 <Tab.Container id="left-tabs-example" defaultActiveKey="first">
@@ -98,6 +97,8 @@ const Manage = (props) => {
                                         onDelete={onDelete}
                                         handleSearchWord={handleSearchWord}
                                         manageBy={manageBy}
+                                        onSpinner={props.onSpinner}
+                                        spinner={props.spinner}
                                     />
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="second">
@@ -109,6 +110,8 @@ const Manage = (props) => {
                                         manageBy={manageBy}
                                         onAdd={onAdd}
                                         onEdit={onEdit}
+                                        onSpinner={props.onSpinner}
+                                        spinner={props.spinner}
                                     />
 
                                 </Tab.Pane><Tab.Pane eventKey="third">
@@ -118,6 +121,8 @@ const Manage = (props) => {
                                         handleSearchWord={handleSearchWord}
                                         manageBy={manageBy}
                                         onDisable={onDisable}
+                                        onSpinner={props.onSpinner}
+                                        spinner={props.spinner}
 
                                     />
 

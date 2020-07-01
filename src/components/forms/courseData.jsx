@@ -48,7 +48,6 @@ const CourseData = (props) => {
                 const newCourse = { ...values[1].data.course }
                 if(newCourse.img){
 
-                    console.log("newCourse.img",newCourse.img)
                     newCourse["img"] = `data:image/jpeg;base64,${values[1].data.img}`
                 }
                 setState({ ...state, categories: values[0].data, course: newCourse })
@@ -232,9 +231,9 @@ const CourseData = (props) => {
     // }
 
     return (
+        !props.spinner&&
         <React.Fragment>
             <ToastContainer />
-            {console.log("coursee", state.course)}
             <Container>
                 <div className="course">
                     <Row>
@@ -281,7 +280,6 @@ const CourseData = (props) => {
                                 <div className="course__details-info">
                                     <Form.Group controlId="exampleForm.ControlTextarea1" >
                                         <input id="imgInput" accept="image/*" type="file" onChange={onImgChange} multiple style={{ display: 'none' }} />
-                                        {console.log("props.match.path",props.match.path)}
                                         {state.course.img ? <label htmlFor="imgInput" className="course__details-img imgCourse">
 
                                             <img

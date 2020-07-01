@@ -11,15 +11,12 @@ const Filters = (props) => {
 
     useEffect(() => {
         featureService.getAllCategories().then(({ data }) => {
-            console.log("data", data)
             setCategories(data)
         })
 
     }, [])
 
     const handleCheck = (id, e) => {
-        console.log(id)
-        console.log(e.target.checked)
         if (e.target.checked === true) {
            
                 filtredCats.push(id)

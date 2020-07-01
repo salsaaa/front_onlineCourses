@@ -48,7 +48,6 @@ const ManageTable = (props) => {
 
     }
     const handleDelete = (id) => {
-        console.log("deletedId", id)
         setShowDeleteDialog(true);
         setDeletedId(id)
     }
@@ -56,7 +55,6 @@ const ManageTable = (props) => {
     const handleChange = ({ target }) => {
         const title = target.value;
         setCatTitle(title);
-        console.log(catTitle)
     };
     const handleCatAdd = () => {
         addCategory({ title: catTitle }).then(({ data }) => {
@@ -81,6 +79,7 @@ const ManageTable = (props) => {
         }).catch((err)=>console.log(err))
     }
     return (
+        !props.spinner&&
         <React.Fragment>
 
             <Modal show={showDeleteDialog} onHide={handleClose}>
@@ -198,7 +197,6 @@ const ManageTable = (props) => {
 
                                 props.data.map(user =>
                                     <tr onClick={() => props.history.push(`/profile/${user._id}`)} className="table__row">
-                                        {console.log("usersgowa", props.data)}
                                         {/* <Link to={`/courses/${course._id}/details`}> */}
                                         <td className="table__header">{++count}</td>
                                         <td>{user?.fullName}</td>

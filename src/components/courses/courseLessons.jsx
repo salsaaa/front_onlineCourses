@@ -22,8 +22,7 @@ const CourseLessons = (props) => {
     props.onSpinner(true)
     getProfile().then(({ data }) => {
       setUser(data)
-      console.log("dataLessons",data)
-      const userCourse=data.enrolledCourses.find(c=>c._id==courseId)
+      const userCourse=data.enrolledCourses?.find(c=>c._id==courseId)
       // setActiveMaterial(userCourse.courseId.materials[0]._id)
       setCourse(userCourse)
       const materialLen=userCourse.courseId.materials.length
@@ -33,10 +32,10 @@ const CourseLessons = (props) => {
       {
         handleWatched(data,userCourse,materialLen)
       }
-      const activeIndex= userCourse.progress/calculateProgress(materialLen)
+      const activeIndex= parseInt(userCourse.progress/calculateProgress(materialLen))
       const active =userCourse.courseId.materials[activeIndex-1]._id
-      console.log("active",active)
       setActiveMaterial(active)
+      setCount(activeIndex-1)
       props.onSpinner(false)
     }).catch((err) => {
       console.log(err)
@@ -99,12 +98,11 @@ const CourseLessons = (props) => {
 
   }
   const handleCountIcon=()=>{
-    console.log("countIcon",countIcon)
     countIcon+=1
   }
   return (
+      !props.spinner&&
     <React.Fragment>
-
       {
       <div >
 

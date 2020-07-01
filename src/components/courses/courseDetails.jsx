@@ -26,7 +26,6 @@ const CourseDetails = (props) => {
   const handleClose = () => setShow(false);
   const handleSave = () => {
     props.onSpinner(true)
-    console.log(deletedId)
     courseService.removeCourse(deletedId).then(({ data }) => {
     setShow(false);
       props.onSpinner(false)
@@ -34,7 +33,6 @@ const CourseDetails = (props) => {
     })
   }
   const handleDelete = (id) => {
-    console.log("deletedId", id)
     setShow(true);
     setDeletedId(id)
   }
@@ -42,7 +40,6 @@ const CourseDetails = (props) => {
     props.onSpinner(true)
     window.scrollTo(0,0)
     courseService.getCourseById(id).then(({ data }) => {
-      console.log("courseDetails", data)
       setCourse(data.course);
       setEnrolled(data.enrolled)
       setImg(data.img)
@@ -55,7 +52,6 @@ const CourseDetails = (props) => {
     setEnrolled(!enrolled)
     courseService.enrollOrUnenroll(courseDetails._id)
       .then(({ data }) => {
-        console.log(data)
 
       }).catch((err) => {
         console.log(err)
@@ -63,8 +59,8 @@ const CourseDetails = (props) => {
 
   }
   return (
+    !props.spinner&&
     <React.Fragment>
-      {console.log("img",img)}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title className="modalText">Confirmation message</Modal.Title>
@@ -80,7 +76,6 @@ const CourseDetails = (props) => {
         </Modal.Footer>
       </Modal>
 
-      {console.log("courseDetails", courseDetails)}
       {!props.spinner&&<Container>
         <div className="course">
           <Row>

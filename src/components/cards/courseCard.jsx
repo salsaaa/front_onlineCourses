@@ -26,20 +26,20 @@ const CourseCard = props => {
         newUser.enrolledCourses[courseIndex]=course
         props.onPoints( newUser.points)
         userService.updateUser(localStorage.getItem("Id"), newUser).then((data) => {
-          console.log("updatedProfile",data)
         })
       }
 
     })
   }
   return (
+
     <React.Fragment>
-      {console.log("course", course)}
+
       <Link to={localStorage.getItem("JWT") ? `/courses/${path === '/profile'|| path === '/profile/:id'?course?.courseId?._id:course?._id}/details` : '/login'} className="CourseCard__container" >
         <div className="CourseCard__img">
           <img
             className="CourseCard__img-sm"
-            src="https://www.incimages.com/uploaded_files/image/1920x1080/getty_933383882_2000133420009280345_410292.jpg"
+            src={`data:image/jpeg;base64,${path === '/profile' || path === '/profile/:id'?course?.courseId?.img:course?.img}`}
             alt="course"
           />
         </div>
@@ -100,7 +100,6 @@ const CourseCard = props => {
            to={course?.progress!==100&&`/courses/${course._id}/lessons`}
            onClick={e => { e.stopPropagation();( course?.progress===100 && handleClaimRewards()) }}
            >
-           {console.log("path",path)}
             {course?.progress === 0 ?
               'Start Course'
               : course?.progress === 100 ?
@@ -112,6 +111,7 @@ const CourseCard = props => {
 
         </div>
       </Link>
+   
     </React.Fragment>
   )
 };
