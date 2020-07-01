@@ -9,7 +9,7 @@ import { MdAccessAlarms } from 'react-icons/md';
 import { FiBookmark } from 'react-icons/fi';
 import { RiUploadLine } from 'react-icons/ri';
 import { BsFillPlusCircleFill } from 'react-icons/bs';
-import { addCourse, updateCourse, getCourseById,uploadImg } from '../../services/courseService'
+import { addCourse, updateCourse, getCourseById, uploadImg } from '../../services/courseService'
 import { getAllCategories } from '../../services/categoryService'
 import { FaMinusCircle } from "react-icons/fa"
 import { GiStarsStack } from "react-icons/gi"
@@ -23,11 +23,11 @@ const CourseData = (props) => {
             duration: 0,
             payment: 0,
             materials: [],
-            categoryId:null,
+            categoryId: null,
             userId: "",
             points: 0,
-            selectedFile:null,
-            img:""
+            selectedFile: null,
+            img: ""
         },
         nestedInfo: {
             title: "",
@@ -41,12 +41,17 @@ const CourseData = (props) => {
     })
     useEffect(() => {
         const path = props.match.path;
-        console.log("props.match.params.id", props.match.params.id)
         if (path === "/courses/:id/edit") {
             props.onSpinner(true)
             const courseId = props.match.params.id;
             Promise.all([getAllCategories(), getCourseById(courseId)]).then(function (values) {
-                setState({ ...state, categories: values[0].data, course: values[1].data.course })
+                const newCourse = { ...values[1].data.course }
+                if(newCourse.img){
+
+                    console.log("newCourse.img",newCourse.img)
+                    newCourse["img"] = `data:image/jpeg;base64,${values[1].data.img}`
+                }
+                setState({ ...state, categories: values[0].data, course: newCourse })
                 props.onSpinner(false)
             })
 
@@ -70,8 +75,8 @@ const CourseData = (props) => {
         categoryId: Joi,
         userId: Joi.required(),
         points: Joi.number().required(),
-        selectedFile:Joi,
-        img:Joi
+        selectedFile: Joi,
+        img: Joi
     };
     const handlePriceVisibility = (visible) => {
         if (visible === false) {
@@ -80,7 +85,6 @@ const CourseData = (props) => {
         setState({ ...state, priceVisibility: visible })
     }
     const handleDropDown = (e, id, name) => {
-        console.log("name", name)
         const course = { ...state.course };
         course[e.target.name] = id;
         if (e.target.name === "categoryId") {
@@ -132,45 +136,38 @@ const CourseData = (props) => {
             setState({ ...state, errors: {} });
             const path = props.match.path;
             const course = { ...state.course }
-            console.log(path)
 
             if (path === "/courses/add") {
                 props.onSpinner(true)
                 const img = new FormData()
                 img.append('file', state.course.selectedFile)
-                console.log(img)
-                uploadImg(img).then(({data}) => { // then print response status
-                    console.log(data)
-                    course["img"]=data.filename;    
+                uploadImg(img).then(({ data }) => { // then print response status
+                    course["img"] = data.filename;
                     addCourse(course)
                         .then(async ({ data }) => {
-                            console.log(data)
                             props.onSpinner(false)
                             props.history.replace("/manage");
                         })
                         .catch((err) => {
                             console.log(err)
                         })
-                }).catch((err)=>console.log(err))
+                }).catch((err) => console.log(err))
             }
             else if (path === "/courses/:id/edit") {
                 props.onSpinner(true)
                 const img = new FormData()
                 img.append('file', state.course.selectedFile)
-                console.log(img)
-                uploadImg(img).then(({data}) => { // then print response status
-                    console.log(data)
-                    course["img"]=data.filename;   
-                const courseId = props.match.params.id;
-                updateCourse(courseId, course).then((data) => {
-                    console.log("editedData", data)
-                    props.onSpinner(false)
-                    props.history.replace("/manage");
+                uploadImg(img).then(({ data }) => { // then print response status
+                    course["img"] = data.filename;
+                    const courseId = props.match.params.id;
+                    updateCourse(courseId, course).then((data) => {
+                        props.onSpinner(false)
+                        props.history.replace("/manage");
 
-                }).catch((err) => {
-                    console.log(err)
+                    }).catch((err) => {
+                        console.log(err)
+                    })
                 })
-            })
 
             }
             return;
@@ -203,9 +200,24 @@ const CourseData = (props) => {
 
         return errors;
     };
+    const getBase64 = (file, cb) => {
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+            cb(reader.result)
+        };
+        reader.onerror = function (error) {
+            console.log('Error: ', error);
+        };
+    }
     const onImgChange = (event) => {
         const course = { ...state.course };
-        course["selectedFile"] = event.target.files[0];
+        const file = event.target.files[0];
+        course["selectedFile"] = file;
+        getBase64(file, (result) => {
+            course["img"] = result
+            setState({ ...state, course })
+        });
         console.log(course)
         setState({ ...state, course });
     }
@@ -268,15 +280,27 @@ const CourseData = (props) => {
                             <div className="course__details">
                                 <div className="course__details-info">
                                     <Form.Group controlId="exampleForm.ControlTextarea1" >
-                                        <label  htmlFor="imgInput"  >
-                                            <div className="course__control course__control--file">
-                                            <div className="course__control--file-icon">
-                                               <RiUploadLine/>
-                                            <input id="imgInput" accept="image/*" type="file"onChange={onImgChange} multiple style={{ display: 'none' }} />
-                                            </div>
-                                            <label >Upload course image</label>
-                                        </div>
+                                        <input id="imgInput" accept="image/*" type="file" onChange={onImgChange} multiple style={{ display: 'none' }} />
+                                        {console.log("props.match.path",props.match.path)}
+                                        {state.course.img ? <label htmlFor="imgInput" className="course__details-img imgCourse">
+
+                                            <img
+                                                className="course__details-img"
+                                                src={state.course.img}
+                                                alt="Course"
+                                            />
+                                        </label>
+                                            :
+                                            <label htmlFor="imgInput"  >
+                                                <div className="course__control course__control--file">
+                                                    <div className="course__control--file-icon">
+                                                        <RiUploadLine />
+                                                        <input id="imgInput" accept="image/*" type="file" onChange={onImgChange} multiple style={{ display: 'none' }} />
+                                                    </div>
+                                                    <label >Upload course image</label>
+                                                </div>
                                             </label>
+                                        }
                                         <textarea value={state.course.description} name="description" onChange={handleChange} className="course__control course__control--text" rows="8" placeholder="Course Description"></textarea>
                                         {state.errors.description && <div className="alert alert-warning">{state.errors.description}</div>}
 

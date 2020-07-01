@@ -9,6 +9,8 @@ import CourseCard from './cards/courseCard';
 import PageNoResult from './core/pageNoResult';
 import * as userService from '../services/userService';
 import {uploadImg } from '../services/courseService'
+const fs = require("fs");
+
 
 
 
@@ -46,7 +48,7 @@ const Profile = props => {
         const id = props.match.params.id || localStorage.getItem("Id")
         userService.getUserById(id).then(({ data }) => {
             console.log("profileData", data)
-            setImg(data.img)
+            setImg(`data:image/jpeg;base64,${data.img}`)
             setProfile(data);
             setCurrentUser(data);
             setOldUser(data)
@@ -67,9 +69,24 @@ const Profile = props => {
     };
     const onImgChange = (event) => {
         const user = { ...currentUser };
-        user["selectedFile"] = event.target.files[0];
+        const file=event.target.files[0]
+        user["selectedFile"] =file ;
+        getBase64(file, (result) => {
+            console.log(result)
+            setImg(result)
+       });
         console.log(user)
         setCurrentUser(user)
+    }
+    const getBase64=(file, cb)=> {
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+            cb(reader.result)
+        };
+        reader.onerror = function (error) {
+            console.log('Error: ', error);
+        };
     }
     const handleSubmit = async e => {
         e.preventDefault();
@@ -111,7 +128,7 @@ const Profile = props => {
             {!props.spinner && <div className="InstCard ">
                 <Container className="profileContainer">
                     <Card className="card--borderless">
-                        <Card.Img className="card__card-img" src={`data:image/jpeg;base64,${img}`} alt={path === '/profile'?"You can add Photo by clicking on edit icon..":"No Photo"} />
+                        <Card.Img className="card__card-img" src={img} alt={path === '/profile'?"You can add Photo by clicking on edit icon..":"No Photo"} />
                         {isEdit &&
                             <div>
                                 <div id="cameraParent" className="profile_edit profile_edit--upload  ">
