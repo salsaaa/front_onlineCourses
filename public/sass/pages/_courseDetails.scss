@@ -1,0 +1,201 @@
+.course {
+    &__heading {
+        color: $info;
+        margin-bottom: 30px;
+    }
+
+    &__data {
+        display: flex;
+        justify-content: space-between;
+
+        &-info {
+            display: inline-block;
+            margin-left: 15px;
+        }
+
+        &-title {
+            color: $secondary;
+            font-size: $font-md;
+        }
+        
+        &-name {
+            color: $primary;
+            
+            &--lg {
+                font-size: $font-lg;
+            }
+        }
+    }
+
+    &__info {
+
+        &:hover {
+            cursor: pointer;
+
+            .course__data-name {
+                color: $primary-dark;
+            }
+        }
+
+        &-add {
+            margin-right: 25%;
+        }
+
+        &-img {
+            max-width: 50px;
+            margin-bottom: 20px;
+            border-radius: 50%;
+
+            &--lg {
+                max-width: 100px;
+            }
+        }
+
+        &-icon {
+            color: $secondary;
+            display: inline-block;
+            font-size: 40px;
+        }
+    }
+
+    &__feedback {
+        text-align: right;
+        padding: 2.5%;
+        &-stars {
+            color: $warning;
+            font-size: $font-lg;
+            margin-right: 10px;
+
+            &--ml {
+                margin-left: 30px;
+            }
+        }
+        &-reviews {
+            color: $info;
+            font-family: $family-secondary;
+        }
+    }
+
+    &__details {        
+        &-info {
+            margin: 0 0 40px;
+        }
+        
+        &-img {
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        &-desc {
+            line-height: 2;
+            font-family: $family-secondary;
+        }
+
+        &-title {
+            color: $secondary;
+        }
+
+        &-list {
+            line-height: 1.7;
+            color: $info;
+            font-family: $family-secondary;
+        }
+    }
+    
+
+    &__features {
+        margin-top: 20px;
+
+        &-cardlist {
+            margin-bottom: 30px;
+
+            &:hover {
+                cursor: pointer;
+                
+                .course__features-cardicon {
+                    transition: all 0.5s ease-in-out;
+                    background-color: $primary-dark;
+                }
+            }
+        }
+
+        &-icon {
+            font-size: 25px;
+            color: $primary-dark;
+        }
+        
+        &-cardicon {
+            display: inline-block;
+            border: 1px solid $primary;
+            border-radius: 50%;
+            padding: 0 10px 4px 7px;
+            margin-right: 15px;
+            color: $white;
+        }
+
+        &-list {
+            margin-top: 30px;
+        }
+
+        &-item {
+            border-bottom: 1px solid $info;
+            padding: 35px 10px 35px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+    }
+
+    &__tabs {
+        margin: 40px 0;
+        background-color: $info;
+        font-weight: 600;
+
+        &-link {
+            color: $secondary-dark !important;
+            
+            &.active {
+                background-color: $secondary-dark !important;
+                color: $white !important;
+            }
+        }
+    }
+
+    &__reviews {
+        margin-bottom: 40px;
+    }
+
+    &__review {
+        color: $secondary;
+
+        &-stars {
+            cursor: pointer;
+
+        }
+    }
+}
+.enrolled{
+    background-color: $secondary-dark !important;
+    border-color: $secondary-dark !important;
+}
+.courseCrud{
+    &__edit{
+        
+        margin: 2%;
+    }
+    &__delete{
+        margin: 2%;
+
+    }
+}
+.material{
+
+    &__title{
+        display: flex ;
+        justify-content: space-between ;
+    }
+}
+.listItem{
+    &:hover{color: $secondary-dark !important;}
+  width: 104% ;
+  }

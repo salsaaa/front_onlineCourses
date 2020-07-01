@@ -1,0 +1,86 @@
+.table {
+  &__header {
+    color: $secondary-dark !important;
+  }
+  &__row {
+    &:hover {
+      background-color: #05040f !important;
+      color: $secondary !important;
+    }
+  }
+  color: whitesmoke;
+  cursor: pointer;
+}
+.table-container {
+  height: 394px;
+  overflow-y: auto;
+}
+.crud {
+  cursor: pointer;
+  &__delete {
+    color: $secondary-dark;
+    &:hover {
+      color: $secondary;
+    }
+    &--red{
+  cursor: pointer;
+
+      color:$danger-dark;
+      font-size:168% ;
+    }
+  }
+
+  &__edit {
+    margin-right: 7%;
+    font-size: 115%;
+    color: $instagram;
+    &:hover {
+      color: #f789b5;
+    }
+  }
+  &__add {
+    font-size: 32px;
+    align-self: center;
+    color: $secondary !important;
+    cursor: pointer;
+  }
+}
+
+.search-add {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 2%;
+}
+.table-bordered td,
+.table-bordered th {
+  border-left: none !important;
+  border-right: none !important;
+}
+.modalText{
+  color: $dark;
+}
+.add-input{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 3%;
+  &__btn{
+    margin-left: 1%;
+  }
+  &__input{
+    &:focus{
+      border-color: $instagram !important;
+    }
+  }
+}
+.delete-btn{
+  padding: 4% !important;
+}
+.add-admin{
+  padding: 0 7% 0% 23%;
+}
+.modal{
+
+  &__title{
+    color: $primary-dark;
+  }
+}

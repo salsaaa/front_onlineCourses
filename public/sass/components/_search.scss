@@ -1,0 +1,28 @@
+.search {
+  background-color: rgba(#4d4d4d, 0.65);
+  height: 100%;
+  z-index: 1;
+  position: fixed;
+  width: 100%;
+  &-panel {
+    width: 25%;
+    position: absolute;
+    background: white;
+    top: 13.5%;
+    right: 17.3%;
+    border: 1px solid #353434;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    overflow-y: auto;
+    max-height: 60%;
+  }
+  &-by {
+    padding: 1%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  }
+  &-list {
+    padding: 4%;
+  }
+}
+.searchContainer {
+  padding-top: 2% !important;
+}

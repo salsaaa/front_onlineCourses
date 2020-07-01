@@ -1,0 +1,84 @@
+.profile {
+  width: 70%;
+  padding-left: 50px;
+  padding-top: 26px;
+  &_icons {
+    font-size: 35px;
+    padding: 2px;
+    margin-top: 10px;
+    cursor: pointer;
+    &--facebook {
+      color: $facebook;
+    }
+
+    &--instagram {
+      color: $instagram;
+    }
+    &--twitter {
+      color: $twitter;
+    }
+  }
+  &__edit {
+    background: transparent;
+    cursor: pointer !important;
+    font-size: 30px;
+    margin-top: 15px;
+    color: green;
+
+    &--upload {
+      position: absolute;
+      left: 73%;
+      bottom: 35%;
+    }
+
+}
+}
+.form-file-label{
+    cursor: pointer !important;
+}
+#cameraParent {
+    position: absolute;
+    left: 73%;
+    bottom: 40%;
+    font-size: 25px;
+}
+#camera {
+  display: none ;
+
+}
+.course {
+  &_control {
+    background: transparent;
+    border: 1px dashed $white;
+    color: $white;
+
+    &--text:focus,
+    &--dropdown:focus,
+    &--dropdown:hover,
+    &--dropdown:active {
+      background: transparent !important;
+      outline: 0 !important;
+      box-shadow: none !important;
+      border: 1px dashed $primary !important;
+      color: $white;
+    }
+
+    &--text {
+      padding: 10px !important;
+
+      width: 100%;
+      display: inline-block;
+
+      &--w {
+        width: 70%;
+      }
+    }
+
+    // &-price {
+    //   visibility: hidden;
+    // }
+  }
+}
+.bt {
+  font-size: 1.7rem;
+}

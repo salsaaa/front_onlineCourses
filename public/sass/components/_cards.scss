@@ -1,0 +1,512 @@
+.CourseCard {
+  position: relative;
+  width: 31%;
+  margin: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow 2s ease-in-out;
+  &:hover {
+    box-shadow: 0 5px 10px rgba(241, 230, 230, 0.979),
+      0 3px 8px rgba(224, 214, 214, 0.959);
+  }
+
+  &--width {
+    width: 31%;
+    margin: 0 1%;
+  }
+
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+
+  transition: box-shadow 0.4s ease, top 0.4s ease, width 0.4s ease,
+    height 0.4s ease;
+
+  &--box {
+    padding: 16px;
+  }
+  &__pagination {
+    align-self: center;
+    padding-top: 2%;
+
+    &--inst {
+      margin: 0 auto;
+    }
+  }
+  &__container {
+    display: flex;
+    flex-direction: column;
+    &:hover{
+
+      text-decoration: none;
+    }
+  }
+
+  &__link {
+    text-decoration: none !important;
+  }
+
+  &__text {
+    color: $info;
+    font-size: 18px;
+    &--colored {
+      padding: 10px;
+      color: $secondary;
+      margin-left: 10px;
+      color: $white;
+      text-shadow: 0 0 2px $white, 0 0 10px $white, 0 0 20px $glow,
+        0 0 30px $glow, 0 0 40px $glow, 0 0 50px $glow;
+      animation: blink 1.5s infinite alternate;
+    }
+  }
+
+  &__text--font {
+    font-family: $family-primary;
+  }
+
+  &__text--space {
+    width: 47%;
+    font-size: 14px;
+  }
+
+  &__img-sm {
+    width: 100%;
+  }
+
+  &__img {
+    width: 100%;
+    // height: 250px;
+    // background-size: cover;
+    // background-repeat: no-repeat;
+    margin-bottom: 15px;
+    // background-image: url('../../../src/images/course/courseimg.jpg');
+  }
+
+  &__items-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    margin: 2px;
+    padding-left: 7%;
+    margin-bottom: 5px;
+  }
+
+  &__star {
+    color: $warning;
+    margin-top: 5px;
+  }
+
+  &__icon {
+    color: $success;
+  }
+
+  &__stars-container {
+    width: 100%;
+  }
+
+  &__btn {
+    position: absolute;
+    right: 9%;
+    text-decoration: none;
+    text-align: center;
+    border: 1px solid transparent;
+    border-radius: 13px;
+    padding: 6px;
+    font-size: 12px;
+    color: $info;
+    background-color: $secondary-dark;
+    &--danger {
+      background-color: $danger-dark;
+    }
+  }
+
+  &__btn:hover {
+    background-color: $secondary;
+    color: $info;
+    text-decoration: none;
+  }
+  &__btn--danger:hover {
+    background-color: $danger;
+  }
+  &__btnCont {
+    width: 100%;
+    height: 50px;
+  }
+}
+
+.InstCard {
+  display: flex;
+  justify-content: center;
+
+  .card {
+    height: 31rem;
+    width: 18rem;
+    background-color: $white;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: box-shadow 1s ease-in-out;
+    &:hover {
+      box-shadow: 1px 2px 1px 3px $primary-dark;
+    }
+    &--borderless {
+      cursor: default;
+      background-color: $dark;
+      &:hover {
+        box-shadow: none;
+      }
+    }
+
+    &__card-img {
+      border-radius: 50% 20%;
+      padding: 25px 20px 20px;
+    }
+
+    &__card-title {
+      color: $primary-dark;
+      font-family: $family-primary;
+      font-weight: 600;
+      
+    }
+
+    &__card-text {
+      color: $secondary-dark;
+      font-size: 18px;
+      font-family: $family-primary;
+      font-weight: 600;
+
+      &--color {
+        color: $secondary-dark;
+        font-weight: 600;
+      }
+    }
+
+    .rating {
+      color: $warning;
+
+      &__num {
+        padding-left: 7px;
+        color: $secondary-dark;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.shoppingList {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  margin: 20px;
+  padding: 15px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  margin-top: 5%;
+  transition: box-shadow 2s ease-in-out;
+  &:hover {
+    box-shadow: 0 5px 10px rgba(241, 230, 230, 0.979),
+      0 3px 8px rgba(224, 214, 214, 0.959);
+  }
+  &__main-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  &__img {
+    width: 12%;
+    background-image: url(/static/media/courseincart.42d67c03.png);
+    height: 85px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  &__mainInfo {
+    margin: 10px;
+    padding: 10px;
+    font-family: $family-primary;
+    width: 65%;
+  }
+  &__Text {
+    &--sm {
+      font-size: 12px;
+    }
+    &--lg {
+      font-size: 20px;
+      color: $primary;
+    }
+    &--colored {
+      color: $secondary;
+      font-size: 15px;
+    }
+    &--span {
+      display: inline-block;
+      margin-left: 2px;
+      font-size: 14px;
+    }
+  }
+  &__qty {
+    margin: 10px;
+    padding: 10px;
+    font-family: $family-primary;
+    display: flex;
+    flex-direction: row;
+    margin-top: 9%;
+    input {
+      width: 45px;
+      height: 25px;
+      margin-left: 7px;
+    }
+  }
+  &__hr {
+    background-color: #fff;
+    opacity: 0.4;
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0.75),
+      rgba(0, 0, 0, 0)
+    );
+    width: 100%;
+  }
+  &__btnContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: $primary;
+    cursor: pointer;
+  }
+  &__btn {
+    color: $danger-dark;
+    font-size: 20px;
+    &:hover {
+      text-decoration: none;
+      color: $danger;
+    }
+  }
+
+  &__vr {
+    color: $info;
+  }
+  &__icon {
+    width: 35px;
+    height: 35px;
+    color: $danger;
+  }
+}
+
+.PaymentCard {
+  position: sticky;
+  top: 90px;
+  width: 35%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: $white;
+  color: $dark;
+  padding: 15px;
+  margin-top: 3%;
+  border: 2px solid $primary-dark;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  font-family: $family-primary;
+  max-height: 600px;
+  margin-right: 25px;
+
+  &__head {
+    color: $primary-dark;
+  }
+
+  &__info {
+    flex-direction: row;
+    display: flex;
+    margin-top: 0;
+    padding: 15px;
+  }
+  &__text {
+    margin-left: 5px;
+    padding: 15px;
+    color: $secondary-dark;
+    font-weight: 600;
+    &--l {
+      font-size: 18px;
+    }
+  }
+  &__img {
+    height: 85px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 20%;
+    margin-right: 20px;
+
+    &--visa {
+      background-image: url("../../../src/images/payment/visa.jpg");
+    }
+  }
+
+  &__hr {
+    background-color: #fff;
+    opacity: 0.4;
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0.75),
+      rgba(0, 0, 0, 0)
+    );
+    width: 100%;
+  }
+  &__btn {
+    color: $info;
+    background-color: $secondary-dark;
+    padding: 10px;
+    margin: 10px;
+    margin-top: 0px;
+    border: 0;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    width: 95%;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+
+    &--link {
+      color: $info;
+      &:hover {
+        text-decoration: none;
+        color: $info;
+      }
+    }
+
+    &:hover {
+      background-color: $secondary;
+    }
+  }
+  &__icon {
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    margin-right: 10px;
+    margin-bottom: 0;
+  }
+}
+
+.InstructorContainer {
+  padding-top: 25px;
+  &__link:hover {
+    text-decoration: none;
+  }
+}
+
+.paymentFormCard-Container {
+  width: 60%;
+  margin-top: 7%;
+}
+.paymentFormCard {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  color: $info;
+  width: 95%;
+  margin: 20px;
+  padding: 15px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  margin-top: 5%;
+  font-family: $family-primary;
+
+  &__icon-container {
+    display: flex;
+    flex-direction: row;
+  }
+  &__header {
+    padding: 10px;
+    color: $secondary;
+    font-size: 18px;
+  }
+  &__img {
+    background-image: url("../../../src/images/payment/paymentForm.jpg");
+    margin-right: 1%;
+    margin-top: 11%;
+    width: 45%;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  &__form {
+    padding: 1% 10%;
+    &--input {
+      width: 90%;
+      &--sm {
+        width: 50%;
+      }
+    }
+
+    &--select {
+      width: 50%;
+      margin-right: 5px;
+    }
+  }
+
+  &__icon {
+    width: 50px;
+    height: 45px;
+    padding: 10px;
+    margin-right: 10px;
+    margin-bottom: 0;
+    border-radius: 50%;
+    border: 1px solid $info;
+    color: $primary-dark;
+    &--verify {
+      padding: 3px;
+      width: 35px;
+      height: 35px;
+      margin-right: 10px;
+      margin-left: 5px;
+    }
+  }
+  &__selectContainer {
+    width: 50%;
+  }
+  &__btn {
+    background-color: $secondary-dark;
+    &:hover {
+      background-color: $secondary;
+    }
+  }
+}
+
+.carousel-new-item {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  flex-direction: row !important;
+}
+.carousel-new-next {
+  right: 20%;
+}
+a.carousel-control-next,
+a.carousel-control-prev {
+  display: none;
+}
+.courseCardsContainer__sub ol {
+  display: none;
+}
+
+.progress {
+  width: 60%;
+  margin-top: 15px;
+}
+
+@keyframes blink {
+  0% {
+  }
+  100% {
+    text-shadow: 0 0 2px $info, 0 0 10px $info, 0 0 20px $info, 0 0 40px $glow,
+      0 0 70px $glow, 0 0 80px $glow;
+  }
+}
+.priceColored {
+  color: $instagram;
+}
+.titleColored {
+  color: $primary;
+}
+.card-body{
+  padding:0 0 0 7%;
+}

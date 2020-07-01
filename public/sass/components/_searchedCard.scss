@@ -1,0 +1,37 @@
+.search{
+    &-card
+    {
+        line-height: 10%;
+        cursor: pointer;
+        padding-left: 11% !important;
+        display: inline-block;
+        padding: 0 25px;
+        height: 56px;
+        font-size: 18px;
+        border-radius: 25px;
+        box-shadow: 81rem 79.11rem rgba(0, 0, 0, 0.25), 0 3px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+
+        &:hover{
+            background-color: #F6F8F8;
+        }
+    }
+    &-img{
+        
+        float: left;
+        margin: 0 10px 0 -25px;
+        height: 55px;
+        width: 55px;
+        border-radius: 50%;
+    }
+
+    &-name{
+        color: $dark;
+        padding-top: 5%;
+    
+    }
+    &-job{
+        color: $primary-dark;
+        font-size: 0.9rem;
+    }
+}

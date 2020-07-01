@@ -1,0 +1,72 @@
+.btn {
+    padding: 10px;
+    box-shadow: none !important;
+
+    &--primary {
+        background-color: $primary;
+    }
+
+    &--primary-dark {
+        background-color: $primary-dark;
+        border: none;
+
+        &:hover, &:focus {
+            background-color: $warning !important;
+        }
+    }
+   
+    &--secondary {
+        background-color: $secondary-dark;
+        border: none;
+
+        &:hover, &:focus {
+            background-color: $secondary !important;
+        }
+    }
+
+    &--success {
+        background-color: $success-dark;
+        border: none;
+
+        &:hover, &:focus {
+            background-color: $success !important;
+        }
+    }
+   &--pd{
+       margin-top:5px; 
+       padding: 8px 18px;
+   }
+   &--mg-left{
+       margin-left:43%;
+       margin-top: 20px;
+       border-radius: 20px;
+   }
+
+
+    &--full {
+        width: 100%;
+    }
+    &--danger{
+        background-color: $danger-dark;
+        border: none;
+
+        &:hover, &:focus {
+            background-color: $danger !important;
+        }
+    }
+    &--border{
+        border-radius: 13px;
+    }
+
+    &--upper {
+        text-transform: uppercase;
+    }
+
+    &--mt0 {
+        margin-top: 20px;
+    }
+
+    &--mr0 {
+        margin-right: 20px;
+    }
+}
