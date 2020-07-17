@@ -21,7 +21,7 @@ const Profile = props => {
 
         fullName: "",
         email: "",
-        selectedFile:null,
+        img:"",
 
     })
 
@@ -40,12 +40,11 @@ const Profile = props => {
 
     useEffect(() => {
         if (path!=="/profile/:id") {
-            props.onSpinner(true)
+            // props.onSpinner(true)
 
         }
         const id = props.match.params.id || localStorage.getItem("Id")
         userService.getUserById(id).then(({ data }) => {
-            setImg(`data:image/jpeg;base64,${data.img}`)
             setProfile(data);
             setCurrentUser(data);
             setOldUser(data)
@@ -67,10 +66,9 @@ const Profile = props => {
     const onImgChange = (event) => {
         const user = { ...currentUser };
         const file=event.target.files[0]
-        user["selectedFile"] =file ;
         getBase64(file, (result) => {
-            setImg(result)
-       });
+            user.img=result;
+        });
         setCurrentUser(user)
     }
     const getBase64=(file, cb)=> {
@@ -86,18 +84,18 @@ const Profile = props => {
     const handleSubmit = async e => {
         e.preventDefault();
         if (isEdit) {
-            props.onSpinner(true)
-            const img = new FormData()
-            img.append('file', currentUser.selectedFile)
-            uploadImg(img).then(({ data }) => { // then print response status
-                currentUser["img"] = data.filename;
-                userService.updateUser(profile._id, currentUser).then(({data}) => {
-                    setIsEdit(false);
-                    props.history.replace("/profile");
-                    props.onSpinner(false)
-
-                })
-            })
+            // props.onSpinner(true)
+            // const img = new FormData()
+            // img.append('file', currentUser.selectedFile)
+            // uploadImg(img).then(({ data }) => { // then print response status
+                console.log(currentUser)
+            userService.updateUser(profile._id, currentUser).then(({data}) => {
+                setIsEdit(false);
+                props.history.replace("/profile");
+                props.onSpinner(false)
+                
+            }).catch((err)=>console.log(err))
+            // })
 
         }
 
@@ -115,10 +113,11 @@ const Profile = props => {
     }
     return (
         <React.Fragment>
+        {console.log(currentUser.img)}
             {!props.spinner && <div className="InstCard ">
                 <Container className="profileContainer">
                     <Card className="card--borderless">
-                        <Card.Img className="card__card-img" src={img} alt={path === '/profile'?"You can add Photo by clicking on edit icon..":"No Photo"} />
+                        <Card.Img className="card__card-img" src={currentUser.img} alt={path === '/profile'?"You can add Photo by clicking on edit icon..":"No Photo"} />
                         {isEdit &&
                             <div>
                                 <div id="cameraParent" className="profile_edit profile_edit--upload  ">

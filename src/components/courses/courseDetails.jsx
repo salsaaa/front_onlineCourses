@@ -42,7 +42,7 @@ const CourseDetails = (props) => {
     courseService.getCourseById(id).then(({ data }) => {
       setCourse(data.course);
       setEnrolled(data.enrolled)
-      setImg(data.img)
+      // setImg(data.img)
       props.onSpinner(false)
     })
 
@@ -116,7 +116,7 @@ const CourseDetails = (props) => {
                 <div className="course__details-info">
                   <img
                     className="course__details-img"
-                    src={`data:image/jpeg;base64,${img}`}
+                    src={courseDetails?.img}
                     alt="Course"
                   />
                   <p className="course__details-desc">

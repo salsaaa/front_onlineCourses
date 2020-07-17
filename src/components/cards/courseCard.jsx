@@ -39,7 +39,7 @@ const CourseCard = props => {
         <div className="CourseCard__img">
           <img
             className="CourseCard__img-sm"
-            src={`data:image/jpeg;base64,${path === '/profile' || path === '/profile/:id'?course?.courseId?.img:course?.img}`}
+            src={path === '/profile' || path === '/profile/:id'?course?.courseId?.img:course?.img}
             alt="course"
           />
         </div>
