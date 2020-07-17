@@ -9,7 +9,7 @@ const SearchedCard = (props) => {
       <div className="search-card">
         <div className="row">
           <div >
-            <img className="search-img" src={props.data?.img} alt="" />
+            <img className="search-img" src={`data:image/jpeg;base64,${props.data?.img}`} alt="" />
           </div>
           <div className="col">
             <h6 className="search-name">{props.data[props.searchBy]}</h6>

@@ -46,10 +46,10 @@ const CourseData = (props) => {
             const courseId = props.match.params.id;
             Promise.all([getAllCategories(), getCourseById(courseId)]).then(function (values) {
                 const newCourse = { ...values[1].data.course }
-                // if(newCourse.img){
+                if(newCourse.img){
 
-                //     newCourse["img"] = `data:image/jpeg;base64,${values[1].data.img}`
-                // }
+                    newCourse["img"] = `data:image/jpeg;base64,${values[1].data.img}`
+                }
                 setState({ ...state, categories: values[0].data, course: newCourse })
                 props.onSpinner(false)
             })
@@ -138,10 +138,10 @@ const CourseData = (props) => {
 
             if (path === "/courses/add") {
                 props.onSpinner(true)
-                // const img = new FormData()
-                // img.append('file', state.course.selectedFile)
-                // uploadImg(img).then(({ data }) => { // then print response status
-                //     course["img"] = data.filename;
+                const img = new FormData()
+                img.append('file', state.course.selectedFile)
+                uploadImg(img).then(({ data }) => { // then print response status
+                    course["img"] = data.filename;
                     addCourse(course)
                         .then(async ({ data }) => {
                             props.onSpinner(false)
@@ -150,14 +150,14 @@ const CourseData = (props) => {
                         .catch((err) => {
                             console.log(err)
                         })
-                // }).catch((err) => console.log(err))
+                }).catch((err) => console.log(err))
             }
             else if (path === "/courses/:id/edit") {
                 props.onSpinner(true)
-                // const img = new FormData()
-                // img.append('file', state.course.selectedFile)
-                // uploadImg(img).then(({ data }) => { // then print response status
-                //     course["img"] = data.filename;
+                const img = new FormData()
+                img.append('file', state.course.selectedFile)
+                uploadImg(img).then(({ data }) => { // then print response status
+                    course["img"] = data.filename;
                     const courseId = props.match.params.id;
                     updateCourse(courseId, course).then((data) => {
                         props.onSpinner(false)
@@ -166,7 +166,7 @@ const CourseData = (props) => {
                     }).catch((err) => {
                         console.log(err)
                     })
-                // })
+                })
 
             }
             return;
